@@ -2,7 +2,7 @@ Summary:	backs up everything github knows about a repository, to the repository
 Name:		github-backup
 Version:	1.20150106
 Release:	0.1
-License:	GPL v3
+License:	GPL v3+
 Group:		Development/Languages
 Source0:	https://github.com/joeyh/github-backup/archive/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	b278a9b09243efc66638bf74554480d4
