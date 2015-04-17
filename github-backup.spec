@@ -8,6 +8,15 @@ Source0:	https://github.com/joeyh/github-backup/archive/%{version}/%{name}-%{ver
 # Source0-md5:	b278a9b09243efc66638bf74554480d4
 URL:		https://github.com/joeyh/github-backup
 BuildRequires:	ghc >= 6.12.3
+#BuildRequires:	ghc-exceptions
+#BuildRequires:	ghc-github >= 0.13.1
+BuildRequires:	ghc-hslogger
+#BuildRequires:	ghc-ifelse
+#BuildRequires:	ghc-missingh
+#BuildRequires:	ghc-optparse-applicative
+#BuildRequires:	ghc-pretty-show
+BuildRequires:	ghc-transformers-base
+#BuildRequires:	ghc-unix-compat
 BuildRequires:	rpmbuild(macros) >= 1.608
 %requires_releq	ghc
 Requires(post,postun):	/usr/bin/ghc-pkg
@@ -32,9 +41,13 @@ and pull requests.
 %setup -q
 
 %build
+%{__make} build \
+	CABAL=./Setup
 
 %install
 rm -rf $RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -42,3 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.md
+%attr(755,root,root) %{_bindir}/github-backup
+%attr(755,root,root) %{_bindir}/gitriddance
+%{_mandir}/man1/github-backup.1
+%{_mandir}/man1/gitriddance.1
